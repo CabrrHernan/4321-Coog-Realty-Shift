@@ -9,6 +9,9 @@ TagManager:
   - Anchor
   - PlayerHand
   - Destroyer
+  - Red
+  - Blue
+  - Green
   layers:
   - Default
   - TransparentFX
