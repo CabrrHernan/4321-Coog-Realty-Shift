@@ -2584,6 +2584,12 @@ Transform:
   - {fileID: 651198792}
   m_Father: {fileID: 503592700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1477134699 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6738067762892099017, guid: 92e4f797326d43644a29620f0bb8082c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1624499971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1477891650
 GameObject:
   m_ObjectHideFlags: 0
@@ -2809,6 +2815,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!143 &1515366823 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 7347397710279368581, guid: 92e4f797326d43644a29620f0bb8082c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1624499971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1527782543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2911,10 +2923,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 268754237591599679, guid: 92e4f797326d43644a29620f0bb8082c,
+        type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1515366823}
     - target: {fileID: 2436598949921145492, guid: 92e4f797326d43644a29620f0bb8082c,
         type: 3}
       propertyPath: m_Name
       value: Player POV
+      objectReference: {fileID: 0}
+    - target: {fileID: 2899927200934163041, guid: 92e4f797326d43644a29620f0bb8082c,
+        type: 3}
+      propertyPath: playerBody
+      value: 
+      objectReference: {fileID: 1477134699}
+    - target: {fileID: 2899927200934163041, guid: 92e4f797326d43644a29620f0bb8082c,
+        type: 3}
+      propertyPath: mouseSensitivity
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6738067762892099017, guid: 92e4f797326d43644a29620f0bb8082c,
         type: 3}
