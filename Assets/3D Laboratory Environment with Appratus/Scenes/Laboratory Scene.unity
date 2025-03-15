@@ -2031,7 +2031,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2008523599}
   - {fileID: 1010122986}
   - {fileID: 1489423098}
   - {fileID: 1645195943}
@@ -18323,12 +18322,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Id: cc96c8f1-8b26-441b-a392-79dc0be21344
---- !u!4 &2008523599 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4145292139985048678, guid: 3967f87296c892e40b57e37bc8601550,
-    type: 3}
-  m_PrefabInstance: {fileID: 4422429682633626958}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2008587044 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1971085608484540914, guid: 90dbb427ac5963541b1cdbc7520999e3,
@@ -19760,7 +19753,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 176161812}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4145292139985048678, guid: 3967f87296c892e40b57e37bc8601550,
         type: 3}
@@ -19775,7 +19768,7 @@ PrefabInstance:
     - target: {fileID: 4145292139985048678, guid: 3967f87296c892e40b57e37bc8601550,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4145292139985048678, guid: 3967f87296c892e40b57e37bc8601550,
         type: 3}
@@ -20079,5 +20072,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 4422429682633626958}
   - {fileID: 176161812}
   - {fileID: 1476823349}
