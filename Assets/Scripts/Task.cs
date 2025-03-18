@@ -1,19 +1,19 @@
-// Task.cs
-public class Task
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "NewTask", menuName = "Task System/Task")]
+public class Task : ScriptableObject
 {
     public string taskName;
-    public string description;
     public bool isCompleted;
 
-    public Task(string name, string desc)
+    public virtual void StartTask()
     {
-        taskName = name;
-        description = desc;
-        isCompleted = false;
+        Debug.Log("Starting Task: " + taskName);
     }
 
-    public void MarkCompleted()
+    public virtual void CompleteTask()
     {
         isCompleted = true;
+        Debug.Log(taskName + " completed!");
     }
 }
