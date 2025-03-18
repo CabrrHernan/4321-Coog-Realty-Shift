@@ -12,6 +12,8 @@ TagManager:
   - Red
   - Blue
   - Green
+  - Water
+  - LargerBeaker
   layers:
   - Default
   - TransparentFX
