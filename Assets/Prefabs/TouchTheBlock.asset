@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da54d02ae57913f47a0eda164cd517f5, type: 3}
   m_Name: TouchTheBlock
   m_EditorClassIdentifier: 
-  taskName: Touch the Block
+  taskName: Block Test
   isCompleted: 0
