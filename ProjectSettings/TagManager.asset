@@ -12,6 +12,7 @@ TagManager:
   - Red
   - Blue
   - Green
+  - Trashcan
   layers:
   - Default
   - TransparentFX
