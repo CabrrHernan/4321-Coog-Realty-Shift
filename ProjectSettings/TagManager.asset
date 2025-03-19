@@ -12,7 +12,8 @@ TagManager:
   - Red
   - Blue
   - Green
-  - Trashcan
+  - Water
+  - LargerBeaker
   layers:
   - Default
   - TransparentFX

@@ -1,56 +1,62 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChemicalMixer : MonoBehaviour
 {
-    public string chemical1 = "";
-    public string chemical2 = "";
-    public GameObject reactionEffect;
-    public string correctMix = "Red+Blue"; // Set the correct mixture
-    public GameObject lockedContainer; // Assign a locked object that can be dissolved
+    public List<string> addedChemicals = new List<string>(); // Stores all added chemicals
+    public GameObject liquidInBeaker; // The visible liquid inside the larger beaker
+    public float maxLiquidHeight = 1.5f; // The highest the liquid can go
+    public float pourAmount = 0.2f; // How much liquid height increases per pour
+    private Vector3 originalLiquidScale; // Stores original scale of liquid
 
-    void OnTriggerEnter(Collider other)
+    void Start()
     {
-        if (chemical1 == "")
+        originalLiquidScale = liquidInBeaker.transform.localScale; // Save original scale
+    }
+
+    public void AddChemical(string chemical)
+    {
+        if (!addedChemicals.Contains(chemical))
         {
-            chemical1 = other.gameObject.tag; // Assign first chemical
-        }
-        else
-        {
-            chemical2 = other.gameObject.tag; // Assign second chemical
-            CheckReaction();
+            addedChemicals.Add(chemical);
+            Debug.Log(chemical + " added to the mix!");
+
+            UpdateLiquidLevel();
         }
     }
 
-    void CheckReaction()
+    void UpdateLiquidLevel()
     {
-        string mixResult = chemical1 + "+" + chemical2;
-        string reverseMix = chemical2 + "+" + chemical1;
-
-        if (mixResult == correctMix || reverseMix == correctMix)
+        // Ensure we don’t exceed max height
+        if (liquidInBeaker.transform.localScale.y < maxLiquidHeight)
         {
-            Debug.Log("Correct mixture! Unlocking next puzzle.");
-            Instantiate(reactionEffect, transform.position, Quaternion.identity);
-            lockedContainer.SetActive(false); // "Dissolve" locked container
+            StartCoroutine(SmoothLiquidIncrease());
         }
-        else
-        {
-            Debug.Log("Wrong mixture! Explosion triggered.");
-            StartCoroutine(ExplosionEffect());
-        }
-
-        ResetChemicals();
     }
 
-    IEnumerator ExplosionEffect()
+    IEnumerator SmoothLiquidIncrease()
     {
-        yield return new WaitForSeconds(1);
-        Debug.Log("Explosion! Resetting puzzle.");
-    }
+        float targetHeight = liquidInBeaker.transform.localScale.y + pourAmount;
+        targetHeight = Mathf.Min(targetHeight, maxLiquidHeight); // Clamp to max height
 
-    void ResetChemicals()
-    {
-        chemical1 = "";
-        chemical2 = "";
+        Vector3 targetScale = new Vector3(
+            originalLiquidScale.x,
+            targetHeight,
+            originalLiquidScale.z
+        );
+
+        float duration = 0.5f; // Animation duration
+        float elapsedTime = 0f;
+        Vector3 startScale = liquidInBeaker.transform.localScale;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            liquidInBeaker.transform.localScale = Vector3.Lerp(startScale, targetScale, elapsedTime / duration);
+            yield return null;
+        }
+
+        liquidInBeaker.transform.localScale = targetScale; // Ensure final scale is exact
     }
 }
