@@ -7,7 +7,7 @@ public class Scale : MonoBehaviour
     private float currentWeight;
     void Start()
     {
-        weightText.text = "0 grams";
+        weightText.text = "0.0 grams";
     }
 
     void OnTriggerEnter(Collider other)
@@ -16,12 +16,12 @@ public class Scale : MonoBehaviour
         if (rock != null)
         {
             currentWeight = rock.weight;
-            weightText.text = currentWeight.ToString("F2") + " ";
+            weightText.text = currentWeight.ToString("F2") + " grams";
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        weightText.text = "0 grams";
+        weightText.text = "0.0 grams";
     }
 }
