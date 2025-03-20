@@ -17,9 +17,9 @@ public class DisappearOnGrab : MonoBehaviour
     private void OnGrabbed(SelectEnterEventArgs args)
     {
         // Destroy the object when grabbed
-        Destroy(gameObject);
+        // Destroy(gameObject);
 
-        // gameObject.SetActive(false); // Disable the object, not destroy it
+        gameObject.SetActive(false); // Disable the object, not destroy it
     }
 
     private void OnDestroy()
