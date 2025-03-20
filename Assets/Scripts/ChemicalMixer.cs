@@ -1,62 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChemicalMixer : MonoBehaviour
 {
-    public List<string> addedChemicals = new List<string>(); // Stores all added chemicals
-    public GameObject liquidInBeaker; // The visible liquid inside the larger beaker
-    public float maxLiquidHeight = 1.5f; // The highest the liquid can go
-    public float pourAmount = 0.2f; // How much liquid height increases per pour
-    private Vector3 originalLiquidScale; // Stores original scale of liquid
+    public Transform liquidInBeaker; // The liquid object inside the mixing beaker
+    public float maxLiquidHeight = 1.5f;
+    private Vector3 originalLiquidScale;
+    private Color currentLiquidColor = Color.clear; // Start as empty
+    private int liquidCount = 0; // Tracks how many liquids were added
 
     void Start()
     {
-        originalLiquidScale = liquidInBeaker.transform.localScale; // Save original scale
+        if (liquidInBeaker != null)
+            originalLiquidScale = liquidInBeaker.localScale;
+
+        // Set initial color (clear/empty)
+        UpdateLiquidColor();
     }
 
-    public void AddChemical(string chemical)
+    public void IncreaseLiquidLevel(float amount, Color newLiquidColor)
     {
-        if (!addedChemicals.Contains(chemical))
+        if (liquidInBeaker.localScale.y < maxLiquidHeight)
         {
-            addedChemicals.Add(chemical);
-            Debug.Log(chemical + " added to the mix!");
+            liquidInBeaker.localScale += new Vector3(0, amount, 0);
 
-            UpdateLiquidLevel();
+            // Blend colors using an average mixing approach
+            BlendNewColor(newLiquidColor);
         }
     }
 
-    void UpdateLiquidLevel()
+    private void BlendNewColor(Color newColor)
     {
-        // Ensure we don’t exceed max height
-        if (liquidInBeaker.transform.localScale.y < maxLiquidHeight)
+        if (liquidCount == 0)
         {
-            StartCoroutine(SmoothLiquidIncrease());
+            currentLiquidColor = newColor; // First liquid sets the initial color
         }
+        else
+        {
+            // Blend current color with new color (weighted average)
+            currentLiquidColor = Color.Lerp(currentLiquidColor, newColor, 0.5f);
+        }
+
+        liquidCount++;
+
+        UpdateLiquidColor();
     }
 
-    IEnumerator SmoothLiquidIncrease()
+    private void UpdateLiquidColor()
     {
-        float targetHeight = liquidInBeaker.transform.localScale.y + pourAmount;
-        targetHeight = Mathf.Min(targetHeight, maxLiquidHeight); // Clamp to max height
-
-        Vector3 targetScale = new Vector3(
-            originalLiquidScale.x,
-            targetHeight,
-            originalLiquidScale.z
-        );
-
-        float duration = 0.5f; // Animation duration
-        float elapsedTime = 0f;
-        Vector3 startScale = liquidInBeaker.transform.localScale;
-
-        while (elapsedTime < duration)
+        Renderer liquidRenderer = liquidInBeaker.GetComponent<Renderer>();
+        if (liquidRenderer != null)
         {
-            elapsedTime += Time.deltaTime;
-            liquidInBeaker.transform.localScale = Vector3.Lerp(startScale, targetScale, elapsedTime / duration);
-            yield return null;
+            liquidRenderer.material.color = currentLiquidColor;
         }
-
-        liquidInBeaker.transform.localScale = targetScale; // Ensure final scale is exact
     }
 }

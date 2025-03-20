@@ -3,11 +3,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class BeakerHover : MonoBehaviour
 {
-    public string chemicalName; // Set in Inspector (e.g., "Red Chemical")
+    public string chemicalName; // Set this in Inspector (e.g., "Red Chemical")
 
     void Start()
     {
-        // Ensure there's an XR Grab Interactable component
         UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable interactable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
         if (interactable == null)
         {
