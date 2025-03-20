@@ -11,14 +11,15 @@ public class Clean : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // Apply to only to this specfic collection of objects
         if (IsChildOfPrefab(other.gameObject))
         {
             triggerCount++;
 
             Debug.Log($"Object {other.gameObject.name} entered the trigger. Count: {triggerCount}");
 
+            // Deleting what is in contact
             Destroy(other.gameObject);
-
             if (triggerCount >= 4 && clean == true)
             {
                 clean = false;
