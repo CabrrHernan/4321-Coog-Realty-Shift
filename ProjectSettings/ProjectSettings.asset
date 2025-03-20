@@ -144,7 +144,10 @@ PlayerSettings:
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
   bundleVersion: 0.0.1
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 5269706996647393442, guid: e3aee76b9372917449aef639e2f74814, type: 2}
+  - {fileID: 11400000, guid: 3388b57ea1eb26049aa66072b1bb3846, type: 2}
+  - {fileID: 3233996788981779080, guid: 87b413c5a910b15498a98200731b1754, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -176,7 +179,7 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 30
+  AndroidMinSdkVersion: 29
   AndroidTargetSdkVersion: 32
   AndroidPreferredInstallLocation: 0
   aotOptions: 
