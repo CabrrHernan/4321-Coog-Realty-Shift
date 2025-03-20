@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class DetectObject : MonoBehaviour
 {
-    private int triggerCount = 0;
 
     public GameObject targetPrefab;
     public ParticleSystem particles;
@@ -17,10 +16,8 @@ public class DetectObject : MonoBehaviour
 
         if (IsChildOfPrefab(other.gameObject))
         {
-            triggerCount++;
+            // Counts number of broken pieces thrown in
             particles.Play();
-
-            Debug.Log($"Object {other.gameObject.name} entered the trigger. Count: {triggerCount}");
 
             // Delete the object
             Destroy(other.gameObject);

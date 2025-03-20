@@ -19,13 +19,20 @@ public class Break : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Whenever there's a force strong enough and the object HASN'T 'broken' yet
         if (rb.linearVelocity.magnitude > bForce && active == 0)
         {
             active++;
+
+            // Delete and Replace
             Destroy(objectToReplace);
             newObject = Instantiate(brokenObject, transform.position, transform.rotation);
             newObject.name = "brokenGlass";
+
+            // Render the correct material
             brokenObject.GetComponent<Renderer>().material = MaterialRef;
+
+            // Add realistic physics upon impact
             rb.AddExplosionForce(10f, Vector3.zero, 0f);
         }
     }
