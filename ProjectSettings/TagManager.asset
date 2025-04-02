@@ -14,6 +14,8 @@ TagManager:
   - Green
   - Water
   - LargerBeaker
+  - Trashcan
+  - Extinguisher
   layers:
   - Default
   - TransparentFX
