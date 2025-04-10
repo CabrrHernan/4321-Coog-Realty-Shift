@@ -5,6 +5,9 @@ public class Task : ScriptableObject
 {
     public string taskName;
     public bool isCompleted;
+    
+    public string description;
+
 
     public virtual void StartTask()
     {
