@@ -3,39 +3,56 @@ using System.Collections.Generic;
 
 public class TaskManager : MonoBehaviour
 {
-    public static TaskManager Instance { get; private set; }
-
-    public List<Task> tasks = new List<Task>(); // Drag & Drop tasks in Inspector
+    public List<RuntimeTask> runtimeTasks = new List<RuntimeTask>(); // Assign in Inspector
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        // Optionally initialize something if needed
     }
 
-    private void Start()
+    public void StartTask(int index)
+{
+    if (index < 0 || index >= runtimeTasks.Count) return;
+
+    var rt = runtimeTasks[index];
+    rt.taskAsset.isCompleted = false;
+
+    // Check if taskObject is not null before calling SetActive
+    if (rt.taskObject != null)
     {
-        StartNextTask();
+        rt.taskObject.SetActive(true);
     }
 
-    public void TaskCompleted(Task completedTask)
+    rt.taskAsset.StartTask();
+}
+
+
+    public void ResetTask(int index)
     {
-        Debug.Log("Task Completed: " + completedTask.taskName);
-        StartNextTask();
+        if (index < 0 || index >= runtimeTasks.Count) return;
+
+        var rt = runtimeTasks[index];
+        rt.taskAsset.isCompleted = false;
+
+        if (rt.taskObject != null)
+            rt.taskObject.SetActive(false);
     }
 
-    private void StartNextTask()
+    public void CompleteTask(int index)
     {
-        foreach (Task task in tasks)
-        {
-            if (!task.isCompleted)
-            {
-                task.StartTask();
-                return;
-            }
-        }
-        Debug.Log("All tasks completed!");
+        if (index < 0 || index >= runtimeTasks.Count) return;
+
+        var rt = runtimeTasks[index];
+        rt.taskAsset.CompleteTask();
+
+        if (rt.taskObject != null)
+            rt.taskObject.SetActive(false);
     }
+}
+
+[System.Serializable]
+public class RuntimeTask
+{
+    public Task taskAsset; // Reference to the Task ScriptableObject
+    public GameObject taskObject; // The corresponding GameObject for this task
 }
