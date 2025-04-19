@@ -12,7 +12,7 @@ public class Rock : MonoBehaviour
     public static readonly Color Brown = new Color(117f / 255f, 42f / 255f, 23f / 255f);
     public static readonly Color LightBlack = new Color(44f / 255f, 16f / 255f, 10f / 255f);
 
-    [SerializeField] private int _penSize = 5;
+    [SerializeField] private int _penSize = 2;
 
     private Renderer _renderer;
     private Color[] _colors;
