@@ -14,6 +14,9 @@ TagManager:
   - Green
   - Water
   - LargerBeaker
+  - Peg
+  - Trashcan
+  - MixingBeaker
   layers:
   - Default
   - TransparentFX
