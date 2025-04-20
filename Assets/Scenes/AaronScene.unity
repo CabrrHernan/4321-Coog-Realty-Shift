@@ -910,6 +910,173 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1800593587}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &853748719
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -9079732834223612421, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Text_2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.091
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.484
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8429549773828802359, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Text_Off
+      objectReference: {fileID: 0}
+    - target: {fileID: -7526154268563622923, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: On Button
+      objectReference: {fileID: 0}
+    - target: {fileID: -5963197819981706930, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Knob
+      objectReference: {fileID: 0}
+    - target: {fileID: -4274829050010154341, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Electric coil
+      objectReference: {fileID: 0}
+    - target: {fileID: -466329591000292508, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Frame
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Electric_Burner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963587377483914428, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Rubber Feet
+      objectReference: {fileID: 0}
+    - target: {fileID: 5377558640278228710, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Text_5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5504069046126220632, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Text_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381950937049279308, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Text_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6555668606454358919, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Coil stand
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632613406857611280, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Power knob
+      objectReference: {fileID: 0}
+    - target: {fileID: 6683845865966445269, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Coil
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898905246327257410, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Text_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820843428715396412, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      propertyPath: m_Name
+      value: Text_0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: -2030275914854874955, guid: fd9824c89be29487ba77dbcf995c3f9d, type: 3}
+    - {fileID: 3542652863879925224, guid: fd9824c89be29487ba77dbcf995c3f9d, type: 3}
+    - {fileID: -6830932304464785696, guid: fd9824c89be29487ba77dbcf995c3f9d, type: 3}
+    - {fileID: -1123108386131194074, guid: fd9824c89be29487ba77dbcf995c3f9d, type: 3}
+    - {fileID: 757943609684103123, guid: fd9824c89be29487ba77dbcf995c3f9d, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8429549773828802359, guid: fd9824c89be29487ba77dbcf995c3f9d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1275492004}
+  m_SourcePrefab: {fileID: 100100000, guid: fd9824c89be29487ba77dbcf995c3f9d, type: 3}
 --- !u!4 &1010122986 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7174019212652907432, guid: 77ac6b10722bcca4a8baf70e44d89e78,
@@ -984,6 +1151,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+--- !u!1 &1275492002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8429549773828802359, guid: fd9824c89be29487ba77dbcf995c3f9d,
+    type: 3}
+  m_PrefabInstance: {fileID: 853748719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1275492004
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275492002}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.016142346, y: 0.0069999998, z: 0.0015021666}
+  m_Center: {x: -0.00007307845, y: 0.0034100339, z: -0.0004715629}
 --- !u!1 &1314655651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1758,3 +1952,4 @@ SceneRoots:
   - {fileID: 2042150219}
   - {fileID: 176161812}
   - {fileID: 1800593587}
+  - {fileID: 853748719}

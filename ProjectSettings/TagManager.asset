@@ -16,6 +16,7 @@ TagManager:
   - LargerBeaker
   - Trashcan
   - Extinguisher
+  - Streakplate
   layers:
   - Default
   - TransparentFX
