@@ -1,19 +1,29 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewTask", menuName = "Task System/Task")]
+[CreateAssetMenu(fileName = "New Task", menuName = "Task")]
 public class Task : ScriptableObject
 {
     public string taskName;
+    public string description;
     public bool isCompleted;
 
-    public virtual void StartTask()
+    public void StartTask()
     {
-        Debug.Log("Starting Task: " + taskName);
+        // Logic to start the task
+        Debug.Log($"{taskName} has started.");
     }
 
-    public virtual void CompleteTask()
+    public void CompleteTask()
     {
+        // Logic to complete the task
         isCompleted = true;
-        Debug.Log(taskName + " completed!");
+        Debug.Log($"{taskName} has been completed.");
+    }
+
+    public void ResetTask()
+    {
+        // Logic to reset the task
+        isCompleted = false;
+        Debug.Log($"{taskName} has been reset.");
     }
 }

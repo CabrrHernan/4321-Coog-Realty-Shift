@@ -18,7 +18,7 @@ public class sortingTaskManager : MonoBehaviour
     public void CheckCompletion()
     {
         bool allRocksSorted = true; // Assume all rocks are sorted initially
-        Debug.Log("Checking Completion");
+        // Debug.Log("Checking Completion");
 
         // Check each container to see if the correct rock is placed
         foreach (Container container in containers)
@@ -35,20 +35,20 @@ public class sortingTaskManager : MonoBehaviour
         if (allRocksSorted && rocksInBins == totalRocks)
         {
             completionText.text = "Done!";
-            Debug.Log("Completed task");
+            // Debug.Log("Completed task");
         }
         else
         {
             completionText.text = "Sorting Task: " + rocksInBins + "/" + totalRocks;
-            Debug.Log("Task incomplete: " + rocksInBins + "/" + totalRocks);
+            // Debug.Log("Task incomplete: " + rocksInBins + "/" + totalRocks);
         }
     }
 
     // Increase the number of rocks in bins
     public void IncreaseRockInBin()
     {
-        rocksInBins++; // Increment by 1
-        Debug.Log("Current rocks = " + rocksInBins);
+        rocksInBins++; 
+        // Debug.Log("Current rocks = " + rocksInBins);
     }
 
     // Decrease the number of rocks in bins
@@ -56,8 +56,8 @@ public class sortingTaskManager : MonoBehaviour
     {
         if (rocksInBins > 0) // Ensure rocksInBins doesn't go below 0
         {
-            rocksInBins--; // Decrement by 1
+            rocksInBins--;
         }
-        Debug.Log("Current rocks = " + rocksInBins);
+        // Debug.Log("Current rocks = " + rocksInBins);
     }
 }

@@ -17,6 +17,9 @@ TagManager:
   - Peg
   - Trashcan
   - MixingBeaker
+  - Trashcan
+  - Extinguisher
+  - Streakplate
   layers:
   - Default
   - TransparentFX

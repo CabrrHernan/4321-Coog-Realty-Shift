@@ -21,7 +21,7 @@ public class Container : MonoBehaviour
         if (rock != null)
         {
             placedRock = rock; // Store the reference to the placed rock
-            Debug.Log("Rock placed in container: " + rock.rockType);
+            // Debug.Log("Rock placed in container: " + rock.rockType);
 
             // Increase the number of rocks in bins
             if (taskManager != null)
@@ -39,7 +39,7 @@ public class Container : MonoBehaviour
         if (rock != null && rock == placedRock)
         {
             placedRock = null; // Clear the reference when the rock is removed
-            Debug.Log("Rock removed from container: " + rock.rockType);
+            // Debug.Log("Rock removed from container: " + rock.rockType);
 
             // Decrease the number of rocks in bins
             if (taskManager != null)
