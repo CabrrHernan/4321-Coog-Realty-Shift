@@ -8,7 +8,7 @@ public class TaskManagerUI : MonoBehaviour
     public TaskManager taskManager; // Reference to TaskManager
     public TextMeshProUGUI taskNameText, taskNameSmallText;
     public TextMeshProUGUI taskDescriptionText;
-  
+    public Toggle completeToggle; // Checkbox to mark completion
 
     public Button nextButton, prevButton, startButton, resetButton, backButton;
     public ScrollRect scrollRect;
@@ -17,10 +17,10 @@ public class TaskManagerUI : MonoBehaviour
 
     private void Start()
     {
-        if (taskManager == null) taskManager = FindObjectOfType<TaskManager>();  // Find TaskManager if not assigned
+        if (taskManager == null) taskManager = FindObjectOfType<TaskManager>();  // Auto-assign TaskManager
         UpdateTaskUI();
         taskNameSmallText.gameObject.SetActive(false);
-        
+        completeToggle.interactable = false;
 
         nextButton.onClick.AddListener(() => ChangeTask(1));
         prevButton.onClick.AddListener(() => ChangeTask(-1));
@@ -46,11 +46,15 @@ public class TaskManagerUI : MonoBehaviour
 
         RuntimeTask currentRuntimeTask = taskManager.runtimeTasks[currentTaskIndex];
         Task currentTask = currentRuntimeTask.taskAsset;
+
         taskNameText.text = currentTask.taskName;
         taskNameSmallText.text = currentTask.taskName;
         taskDescriptionText.text = currentTask.description;
 
-        // Reset Scroll Position when switching tasks
+        completeToggle.isOn = currentTask.isCompleted;
+        completeToggle.interactable = false;
+
+        // Reset scroll position
         if (scrollRect != null)
         {
             scrollRect.verticalNormalizedPosition = 1f;
@@ -58,53 +62,61 @@ public class TaskManagerUI : MonoBehaviour
     }
 
     private void StartSelectedTask()
-{
-    RuntimeTask selectedRuntimeTask = taskManager.runtimeTasks[currentTaskIndex];
-    Task selectedTask = selectedRuntimeTask.taskAsset;
+    {
+        RuntimeTask selectedRuntimeTask = taskManager.runtimeTasks[currentTaskIndex];
+        Task selectedTask = selectedRuntimeTask.taskAsset;
 
-    // Reset task state before starting again
-    selectedTask.isCompleted = false;
+        selectedTask.isCompleted = false; // Reset task completion on start
+        taskManager.StartTask(currentTaskIndex);
 
-    taskManager.StartTask(currentTaskIndex);
+        taskNameSmallText.text = selectedTask.taskName;
+        taskDescriptionText.text = selectedTask.description;
 
-    taskNameSmallText.text = selectedTask.taskName;
-    taskDescriptionText.text = selectedTask.description;
+        taskNameSmallText.gameObject.SetActive(true);
+        taskDescriptionText.gameObject.SetActive(true);
+        scrollRect.gameObject.SetActive(true);
+        resetButton.gameObject.SetActive(true);
+        backButton.gameObject.SetActive(true);
 
-    taskNameSmallText.gameObject.SetActive(true);
-    taskDescriptionText.gameObject.SetActive(true);
-    scrollRect.gameObject.SetActive(true);
-    resetButton.gameObject.SetActive(true);
-    backButton.gameObject.SetActive(true);
+        taskNameText.gameObject.SetActive(false);
+        startButton.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(false);
+        prevButton.gameObject.SetActive(false);
 
-    // Hide main UI
-    taskNameText.gameObject.SetActive(false);
-    startButton.gameObject.SetActive(false);
-    nextButton.gameObject.SetActive(false);
-    prevButton.gameObject.SetActive(false);
-}
-
+        completeToggle.interactable = true;
+        completeToggle.isOn = selectedTask.isCompleted;
+        completeToggle.onValueChanged.RemoveAllListeners(); // Prevent stacking
+        completeToggle.onValueChanged.AddListener((isOn) =>
+        {
+            selectedTask.isCompleted = isOn;
+        });
+    }
 
     private void ResetSelectedTask()
     {
         RuntimeTask selectedRuntimeTask = taskManager.runtimeTasks[currentTaskIndex];
         Task selectedTask = selectedRuntimeTask.taskAsset;
         selectedTask.isCompleted = false;
+        completeToggle.isOn = false;
         Debug.Log(selectedTask.taskName + " has been reset.");
     }
 
     private void BackToSelection()
-{
-    taskManager.ResetTask(currentTaskIndex); 
+    {
+        taskManager.ResetTask(currentTaskIndex); 
 
-    taskNameText.gameObject.SetActive(true);
-    startButton.gameObject.SetActive(true);
-    nextButton.gameObject.SetActive(true);
-    prevButton.gameObject.SetActive(true);
+        taskNameText.gameObject.SetActive(true);
+        startButton.gameObject.SetActive(true);
+        nextButton.gameObject.SetActive(true);
+        prevButton.gameObject.SetActive(true);
 
-    taskNameSmallText.gameObject.SetActive(false);
-    taskDescriptionText.gameObject.SetActive(false);
-    scrollRect.gameObject.SetActive(false);
-    resetButton.gameObject.SetActive(false);
-    backButton.gameObject.SetActive(false);
-}
+        taskNameSmallText.gameObject.SetActive(false);
+        taskDescriptionText.gameObject.SetActive(false);
+        scrollRect.gameObject.SetActive(false);
+        resetButton.gameObject.SetActive(false);
+        backButton.gameObject.SetActive(false);
+
+        completeToggle.interactable = false;
+        completeToggle.onValueChanged.RemoveAllListeners();
+    }
 }
