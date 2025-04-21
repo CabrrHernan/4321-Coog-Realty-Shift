@@ -17,6 +17,7 @@ TagManager:
   - Trashcan
   - Extinguisher
   - Streakplate
+  - Wand
   layers:
   - Default
   - TransparentFX
