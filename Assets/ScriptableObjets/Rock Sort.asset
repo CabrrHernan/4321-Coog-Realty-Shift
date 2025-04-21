@@ -13,4 +13,12 @@ MonoBehaviour:
   m_Name: Rock Sort
   m_EditorClassIdentifier: 
   taskName: 'Rock Sort '
+  description: "In a lab getting and sorting samples is very common from different
+    isotopes of iron to organizing beakers. Here we have a simple lab showing an
+    assortment of different rocks that needs to be put in there proper containers 
+    Gather all rock samples and sorting tools  Sort rocks by: Weight and type there\u2019s
+    a scale to weight the rocks and a striking pad to see if the rocks or hematite
+    or magnetite  There\u2019s containers with labels to see where the rocks are
+    suppose to stored  Once all of the rocks are put in their correct boxes you can
+    mark this as complete  "
   isCompleted: 0

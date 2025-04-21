@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: Beaker Clean Up
   m_EditorClassIdentifier: 
   taskName: 'Chemical Spill '
+  description: 'Accidents are always happening in a lab setting from beakers getting
+    pushed off the table or you lose grip dropping the glass on the floor. Learning
+    how to dispose of the waste is important to stay safe in this environment. Put
+    on appropriate PPE (gloves, goggles if needed).  Wait for the breaker to cool
+    down (if used recently).  Wipe down with a damp cloth (no chemicals unless instructed). 
+    Dry it completely with a clean towel.  Return breaker to its proper storage spot
+    (The trash bin)  Once you do all of this you can check this task as complete  '
   isCompleted: 0
-  description: The chemical spill can be very dangerous in a lab setting.
