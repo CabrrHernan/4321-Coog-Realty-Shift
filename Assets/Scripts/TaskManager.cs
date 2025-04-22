@@ -6,9 +6,13 @@ public class TaskManager : MonoBehaviour
     public List<RuntimeTask> runtimeTasks = new List<RuntimeTask>(); // Assign in Inspector
 
     private void Awake()
+{
+    foreach (var task in runtimeTasks)
     {
-        // Optionally initialize something if needed
+        task.CacheOriginalTransform();
     }
+}
+
 
     public void StartTask(int index)
 {
@@ -28,15 +32,21 @@ public class TaskManager : MonoBehaviour
 
 
     public void ResetTask(int index)
+{
+    if (index < 0 || index >= runtimeTasks.Count) return;
+
+    var rt = runtimeTasks[index];
+    rt.taskAsset.isCompleted = false;
+
+    if (rt.taskObject != null)
     {
-        if (index < 0 || index >= runtimeTasks.Count) return;
-
-        var rt = runtimeTasks[index];
-        rt.taskAsset.isCompleted = false;
-
-        if (rt.taskObject != null)
-            rt.taskObject.SetActive(false);
+        rt.ResetTransform(); // Now resets all children too
+        rt.taskObject.SetActive(false);
+        rt.taskObject.SetActive(true); // Optional: restart behavior
     }
+}
+
+
 
     public void CompleteTask(int index)
     {
@@ -53,6 +63,49 @@ public class TaskManager : MonoBehaviour
 [System.Serializable]
 public class RuntimeTask
 {
-    public Task taskAsset; // Reference to the Task ScriptableObject
-    public GameObject taskObject; // The corresponding GameObject for this task
+    public Task taskAsset;
+    public GameObject taskObject;
+
+    [HideInInspector] public List<TransformData> originalTransforms = new List<TransformData>();
+
+    public void CacheOriginalTransform()
+    {
+        originalTransforms.Clear();
+
+        if (taskObject == null) return;
+
+        foreach (Transform t in taskObject.GetComponentsInChildren<Transform>(true))
+        {
+            originalTransforms.Add(new TransformData
+            {
+                transform = t,
+                position = t.position,
+                rotation = t.rotation,
+                scale = t.localScale
+            });
+        }
+    }
+
+    public void ResetTransform()
+    {
+        foreach (var tData in originalTransforms)
+        {
+            if (tData.transform != null)
+            {
+                tData.transform.position = tData.position;
+                tData.transform.rotation = tData.rotation;
+                tData.transform.localScale = tData.scale;
+            }
+        }
+    }
 }
+
+[System.Serializable]
+public class TransformData
+{
+    public Transform transform;
+    public Vector3 position;
+    public Quaternion rotation;
+    public Vector3 scale;
+}
+
