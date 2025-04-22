@@ -15,7 +15,6 @@ public class PeriodicTableGenerator : MonoBehaviour
             GameObject tile = Instantiate(elementPrefab, position, Quaternion.identity, transform);
             tile.name = element.name;
 
-            // ?? This declaration must be inside this foreach loop
             TextMeshPro[] textComponents = tile.GetComponentsInChildren<TextMeshPro>();
 
             foreach (TextMeshPro tmp in textComponents)
@@ -27,15 +26,26 @@ public class PeriodicTableGenerator : MonoBehaviour
                     tmp.text = element.symbol;
                     Debug.Log($"Assigned symbol: {element.symbol} to {tmp.name}");
                 }
-                else if (tmp.name.Contains("Number"))  // or exact: tmp.name == "ElementNumber"
+                else if (tmp.name.Contains("Number")) 
                 {
                     string atomicStr = element.atomicNumber.ToString();
                     tmp.text = atomicStr;
                     Debug.Log($"Assigned atomic number: {atomicStr} to {tmp.name}");
                 }
+                else if (tmp.name.Contains("Name"))
+                {
+                    tmp.text = element.name;
+                    Debug.Log($"Assigned name: {element.name} to {tmp.name}");
+                }
+                
+                else if (tmp.name.Contains("Mass"))
+                {
+                    tmp.text = element.atomicMass.ToString("F3"); 
+                    Debug.Log($"Assigned mass: {element.atomicMass} to {tmp.name}");
+                }
+
             }
 
-            // Optional color by group
             Renderer rend = tile.GetComponent<Renderer>();
             if (rend != null)
                 rend.material.color = GroupToColor(element.group);
@@ -46,10 +56,17 @@ public class PeriodicTableGenerator : MonoBehaviour
     {
         switch (group)
         {
-            case "Lanthanides": return new Color(0.5f, 0.7f, 1f);
-            case "Alkali Metals": return Color.red;
-            case "Noble Gases": return Color.cyan;
-            case "Metalloids": return Color.green;
+            case "Alkali Metal": return new Color(1.0f, 0.502f, 0.502f); // peach
+            case "Alkaline Earth Metal": return new Color(1.0f, 0.6f, 0.4f); // orange
+            case "Transition Metal": return new Color(0.902f, 0.902f, 0.0f); // yellow
+            case "Lanthanides": return new Color(0.702f, 1.0f, 0.702f); // light green
+            case "Actinides": return new Color(0.6f, 0.8f, 1.0f); // light blue
+            case "Metalloid": return new Color(0.624f, 0.875f, 0.749f); // darker light green
+            case "Post-transition Metal": return new Color(1.0f, 0.8f, 0.0f); // darker yellow
+            case "Nonmetal": return new Color(0.702f, 0.702f, 1.0f); // purple
+            case "Halogen": return new Color(1.0f, 0.702f, 1.0f); // pink
+            case "Noble Gas": return new Color(0.502f, 0.667f, 1.0f); // blue
+            case "Unknown Properties": return new Color(0.702f, 0.702f, 0.8f); // purple grey
             // Outside Cases
             default: return Color.gray;
         }

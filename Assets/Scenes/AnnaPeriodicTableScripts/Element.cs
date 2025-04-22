@@ -7,5 +7,6 @@ public class Element
     public string group; 
     public int row;
     public int column;
+    public float atomicMass;
 }
 
