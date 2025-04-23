@@ -1,59 +1,33 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.Events;
+using System.Collections;
+
 
 [RequireComponent(typeof(XRGrabInteractable))]
 public class KnobRotation : MonoBehaviour
 {
-    [Tooltip("Knob level: 0 = Off, 1-6 = Levels")]
-    public int currentLevel = 0;
-
-    [Tooltip("Z-axis rotation values for each knob level")]
+    [Header("Knob Settings")]
     public float[] rotationAngles = new float[] { 0f, -72f, -118f, -164f, -209f, -253f, -300f };
-
-    [Tooltip("Rotation animation duration in seconds")]
     public float rotationDuration = 0.3f;
 
-    private Vector3 baseRotation;
-    private XRGrabInteractable grabInteractable;
-    private Quaternion targetRotation;
-    private Quaternion startRotation;
-    private float rotationProgress;
-    private bool isRotating;
+    [Header("Events")]
+    public UnityEvent<int> onLevelChanged; // Notify other components
+
+    private int _currentLevel = 0;
+    private Vector3 _baseRotation;
+    private XRGrabInteractable _grabInteractable;
+    private Coroutine _rotationCoroutine;
+
+    public string CurrentLevelName => _currentLevel == 0 ? "Off" : $"Level {_currentLevel-1}";
+    public int CurrentLevel => _currentLevel;
 
     void Start()
     {
-        baseRotation = transform.localEulerAngles;
-        targetRotation = transform.localRotation;
-        
-        grabInteractable = GetComponent<XRGrabInteractable>();
-        grabInteractable.selectEntered.AddListener(OnKnobGrabbed);
-    }
-
-    private void OnDestroy()
-    {
-        if (grabInteractable != null)
-        {
-            grabInteractable.selectEntered.RemoveListener(OnKnobGrabbed);
-        }
-    }
-
-    void Update()
-    {
-        if (isRotating)
-        {
-            rotationProgress += Time.deltaTime / rotationDuration;
-            
-            // Use smooth step for easing
-            float t = Mathf.SmoothStep(0f, 1f, rotationProgress);
-            
-            transform.localRotation = Quaternion.Slerp(startRotation, targetRotation, t);
-            
-            if (rotationProgress >= 1f)
-            {
-                isRotating = false;
-            }
-        }
+        _baseRotation = transform.localEulerAngles;
+        _grabInteractable = GetComponent<XRGrabInteractable>();
+        _grabInteractable.selectEntered.AddListener(OnKnobGrabbed);
     }
 
     private void OnKnobGrabbed(SelectEnterEventArgs args)
@@ -63,18 +37,29 @@ public class KnobRotation : MonoBehaviour
 
     private void AdvanceKnobLevel()
     {
-        currentLevel++;
-        if (currentLevel >= rotationAngles.Length)
-            currentLevel = 0;
-
-        float newZ = rotationAngles[currentLevel];
+        _currentLevel = (_currentLevel + 1) % rotationAngles.Length;
         
-        // Set up rotation animation
-        startRotation = transform.localRotation;
-        targetRotation = Quaternion.Euler(baseRotation.x, baseRotation.y, newZ);
-        rotationProgress = 0f;
-        isRotating = true;
+        if (_rotationCoroutine != null) 
+            StopCoroutine(_rotationCoroutine);
+        
+        _rotationCoroutine = StartCoroutine(RotateKnobSmoothly());
+        onLevelChanged.Invoke(_currentLevel);
+    }
 
-        Debug.Log($"Knob Level: {currentLevel}");
+    private IEnumerator RotateKnobSmoothly()
+    {
+        float elapsed = 0f;
+        Quaternion startRot = transform.localRotation;
+        Quaternion targetRot = Quaternion.Euler(_baseRotation.x, _baseRotation.y, rotationAngles[_currentLevel]);
+
+        while (elapsed < rotationDuration)
+        {
+            transform.localRotation = Quaternion.Slerp(startRot, targetRot, 
+                Mathf.SmoothStep(0f, 1f, elapsed/rotationDuration));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localRotation = targetRot;
     }
 }
