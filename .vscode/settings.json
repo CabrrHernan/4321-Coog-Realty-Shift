@@ -56,6 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "4321-Coog-Realty-Shift.sln",
+    "dotnet.defaultSolution": "4321 Escape Room.sln",
     "dotnet.preferCSharpExtension": true
 }
