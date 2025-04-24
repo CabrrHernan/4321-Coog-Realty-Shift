@@ -47,15 +47,14 @@ public class HotPlateController : MonoBehaviour
         {
             // Format with ° symbol and alignment
             temperatureDisplay.text = 
-                $"<b>HOT PLATE</b>\n" +
-                $"<align=left>Level:<align=right>{GetSettingName(knob.CurrentLevel)}\n" +
-                $"<align=left>Temp:<align=right>{currentTemp:F1}°C";
+                $"Heat setting: {GetSettingName(knob.CurrentLevel)}\n" +
+                $"Temp: {currentTemp:F1}°C";
         }
     }
     
     private string GetSettingName(int level)
     {
-        return level == 0 ? "Off" : $"Level {level-1}";
+        return level == 0 ? "Off" : $"{level-1}";
     }
     
     public float GetCurrentTemperature() => currentTemp;
