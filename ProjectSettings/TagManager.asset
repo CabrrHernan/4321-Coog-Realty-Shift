@@ -18,6 +18,9 @@ TagManager:
   - Extinguisher
   - Streakplate
   - Wand
+  - XRController
+  - Mirror
+  - Refract
   layers:
   - Default
   - TransparentFX
