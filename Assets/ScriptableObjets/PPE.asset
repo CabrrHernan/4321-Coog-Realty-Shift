@@ -13,4 +13,12 @@ MonoBehaviour:
   m_Name: PPE
   m_EditorClassIdentifier: 
   taskName: PPE
+  description: "<b>Task:</b> Proper Lab Attire\r\n\r\nEvery job has a dress code,
+    and the lab is no different. The lab coat is your armor \u2014 it protects you
+    from chemicals and is often fire-resistant.\r\n\r\n<b>Steps:</b>  \r\n\u2022
+    Put on a lab coat \u2013 make sure it\u2019s fully buttoned or zipped up  \r\n\u2022
+    Tie back long hair  \r\n\u2022 Remove any dangling jewelry  \r\n\u2022 Wear closed-toe
+    shoes \u2013 sandals and slippers are not allowed  \r\n\u2022 After use, dispose
+    of single-use PPE properly  \r\n\u2022 Clean and store reusable PPE\r\n\r\n<b>Completion:</b> 
+    \r\nOnce you're properly dressed and ready, you can mark this task as complete.\r"
   isCompleted: 0

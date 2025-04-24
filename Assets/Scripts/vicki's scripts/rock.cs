@@ -18,7 +18,7 @@ public class Rock : MonoBehaviour
     private Color[] _colors;
 
     private RaycastHit _touch;
-    private StreakPlate _whiteboard;
+    private StreakPlate _plate;
     private bool _touchedLastFrame;
     private Vector2 _touchPos;
     private Vector2 _lastTouchPos;
@@ -36,7 +36,6 @@ public class Rock : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Update running");
         Draw();
     }
 
@@ -62,31 +61,31 @@ public class Rock : MonoBehaviour
             {
                 if (_touch.transform.CompareTag("Streakplate"))
                 {
-                    if (_whiteboard == null)
+                    if (_plate == null)
                     {
-                        _whiteboard = _touch.transform.GetComponent<StreakPlate>();
+                        _plate = _touch.transform.GetComponent<StreakPlate>();
                     }
 
                     _touchPos = new Vector2(_touch.textureCoord.x, _touch.textureCoord.y);
 
-                    int x = (int)(_touchPos.x * _whiteboard.textureSize.x - (_penSize / 2));
-                    int y = (int)(_touchPos.y * _whiteboard.textureSize.y - (_penSize / 2));
+                    int x = (int)(_touchPos.x * _plate.textureSize.x - (_penSize / 2));
+                    int y = (int)(_touchPos.y * _plate.textureSize.y - (_penSize / 2));
 
-                    if (x < 0 || x >= _whiteboard.textureSize.x || y < 0 || y >= _whiteboard.textureSize.y)
+                    if (x < 0 || x >= _plate.textureSize.x || y < 0 || y >= _plate.textureSize.y)
                         continue;
 
                     if (_touchedLastFrame)
                     {
-                        _whiteboard.texture.SetPixels(x, y, _penSize, _penSize, _colors);
+                        _plate.texture.SetPixels(x, y, _penSize, _penSize, _colors);
 
                         for (float f = 0.01f; f < 1.00f; f += 0.01f)
                         {
                             int lerpX = (int)Mathf.Lerp(_lastTouchPos.x, x, f);
                             int lerpY = (int)Mathf.Lerp(_lastTouchPos.y, y, f);
-                            _whiteboard.texture.SetPixels(lerpX, lerpY, _penSize, _penSize, _colors);
+                            _plate.texture.SetPixels(lerpX, lerpY, _penSize, _penSize, _colors);
                         }
 
-                        _whiteboard.texture.Apply();
+                        _plate.texture.Apply();
                     }
 
                     _lastTouchPos = new Vector2(x, y);
@@ -99,7 +98,7 @@ public class Rock : MonoBehaviour
 
         if (!hitSomething)
         {
-            _whiteboard = null;
+            _plate = null;
             _touchedLastFrame = false;
         }
     }

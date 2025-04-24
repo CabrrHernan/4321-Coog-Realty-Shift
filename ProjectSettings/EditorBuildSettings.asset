@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Laboratory Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Misc_/SampleScene.unity
     guid: 13f6f87036926f94ab0417ca1b31725c
   - enabled: 1
     path: Assets/Scenes/AaronScene.unity
@@ -18,8 +18,11 @@ EditorBuildSettings:
     path: Assets/Scenes/vicki's scene.unity
     guid: a7db69f797e4447e5940db8f261e2514
   - enabled: 0
-    path: Assets/Scenes/BasicScene.unity
+    path: Assets/Scenes/Misc_/BasicScene.unity
     guid: bc761d9a86b33554f85fd11bb1f87ba3
+  - enabled: 1
+    path: Assets/Scenes/RadioactivityAnalysis.unity
+    guid: 1d21131ac64682440bc90a97fe304eea
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3388b57ea1eb26049aa66072b1bb3846,
       type: 2}

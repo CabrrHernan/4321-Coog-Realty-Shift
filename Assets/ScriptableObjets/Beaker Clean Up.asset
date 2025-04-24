@@ -13,5 +13,14 @@ MonoBehaviour:
   m_Name: Beaker Clean Up
   m_EditorClassIdentifier: 
   taskName: 'Chemical Spill '
+  description: "<b>Task:</b> Safely Dispose of Broken Glassware\r\n\r\nAccidents
+    can happen in a lab\u2014beakers may fall or slip from your grip. Learning proper
+    disposal is crucial for maintaining a safe environment.\r\n\r\n<b>Steps:</b>\r\n\u2022
+    Put on appropriate PPE (gloves, goggles if needed)  \r\n\u2022 Wait for the beaker
+    to cool down (if recently used)  \r\n\u2022 Carefully wipe down the area with
+    a damp cloth (no chemicals unless instructed)  \r\n\u2022 Dry the surface with
+    a clean towel  \r\n\u2022 Dispose of the broken beaker in the proper glass waste
+    container (not the trash bin)  \r\n\u2022 Clean up the area and return any tools
+    used  \r\n\r\n<b>Completion:</b>  \r\nOnce all steps are complete, you can mark
+    this task as done.\r"
   isCompleted: 0
-  description: The chemical spill can be very dangerous in a lab setting.

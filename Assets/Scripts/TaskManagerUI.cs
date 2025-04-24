@@ -93,30 +93,48 @@ public class TaskManagerUI : MonoBehaviour
     }
 
     private void ResetSelectedTask()
-    {
-        RuntimeTask selectedRuntimeTask = taskManager.runtimeTasks[currentTaskIndex];
-        Task selectedTask = selectedRuntimeTask.taskAsset;
-        selectedTask.isCompleted = false;
-        completeToggle.isOn = false;
-        Debug.Log(selectedTask.taskName + " has been reset.");
-    }
+{
+    taskManager.ResetTask(currentTaskIndex); // ← Actually resets the task object now
+
+    RuntimeTask selectedRuntimeTask = taskManager.runtimeTasks[currentTaskIndex];
+    Task selectedTask = selectedRuntimeTask.taskAsset;
+
+    selectedTask.isCompleted = false;
+    completeToggle.isOn = false;
+
+    // Re-update the UI to reflect any changed state
+    taskDescriptionText.text = selectedTask.description;
+
+    Debug.Log($"{selectedTask.taskName} has been reset.");
+}
+
 
     private void BackToSelection()
+{
+    // Reset task (reset transform & data)
+    taskManager.ResetTask(currentTaskIndex); 
+
+    // Deactivate taskObject manually
+    var currentRuntimeTask = taskManager.runtimeTasks[currentTaskIndex];
+    if (currentRuntimeTask.taskObject != null)
     {
-        taskManager.ResetTask(currentTaskIndex); 
-
-        taskNameText.gameObject.SetActive(true);
-        startButton.gameObject.SetActive(true);
-        nextButton.gameObject.SetActive(true);
-        prevButton.gameObject.SetActive(true);
-
-        taskNameSmallText.gameObject.SetActive(false);
-        taskDescriptionText.gameObject.SetActive(false);
-        scrollRect.gameObject.SetActive(false);
-        resetButton.gameObject.SetActive(false);
-        backButton.gameObject.SetActive(false);
-
-        completeToggle.interactable = false;
-        completeToggle.onValueChanged.RemoveAllListeners();
+        currentRuntimeTask.taskObject.SetActive(false);
     }
+
+    // UI: Switch to selection screen
+    taskNameText.gameObject.SetActive(true);
+    startButton.gameObject.SetActive(true);
+    nextButton.gameObject.SetActive(true);
+    prevButton.gameObject.SetActive(true);
+
+    taskNameSmallText.gameObject.SetActive(false);
+    taskDescriptionText.gameObject.SetActive(false);
+    scrollRect.gameObject.SetActive(false);
+    resetButton.gameObject.SetActive(false);
+    backButton.gameObject.SetActive(false);
+
+    completeToggle.interactable = false;
+    completeToggle.onValueChanged.RemoveAllListeners();
+}
+
 }
