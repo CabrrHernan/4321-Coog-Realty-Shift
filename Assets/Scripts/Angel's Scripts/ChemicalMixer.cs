@@ -2,55 +2,53 @@ using UnityEngine;
 
 public class ChemicalMixer : MonoBehaviour
 {
-    public Transform liquidInBeaker; // The liquid object inside the mixing beaker
-    public float maxLiquidHeight = 1.5f;
-    private Vector3 originalLiquidScale;
-    private Color currentLiquidColor = Color.clear; // Start as empty
-    private int liquidCount = 0; // Tracks how many liquids were added
+    [Header("Liquid Visual")]
+    public Transform liquidInBeaker; // Assign the child liquid object
+
+    private float currentLevel = 0f; // 0 = empty, 1 = full
+    private Color currentColor = Color.clear;
+    private Vector3 initialScale;
+    private float initialYPosOffset;
 
     void Start()
     {
         if (liquidInBeaker != null)
-            originalLiquidScale = liquidInBeaker.localScale;
-
-        // Set initial color (clear/empty)
-        UpdateLiquidColor();
-    }
-
-    public void IncreaseLiquidLevel(float amount, Color newLiquidColor)
-    {
-        if (liquidInBeaker.localScale.y < maxLiquidHeight)
         {
-            liquidInBeaker.localScale += new Vector3(0, amount, 0);
+            initialScale = liquidInBeaker.localScale;
+            initialYPosOffset = liquidInBeaker.localPosition.y;
 
-            // Blend colors using an average mixing approach
-            BlendNewColor(newLiquidColor);
+            Renderer r = liquidInBeaker.GetComponent<Renderer>();
+            if (r != null)
+            {
+                currentColor = r.material.color;
+            }
         }
     }
 
-    private void BlendNewColor(Color newColor)
+    public void IncreaseLiquidLevel(float amount, Color addedColor)
     {
-        if (liquidCount == 0)
-        {
-            currentLiquidColor = newColor; // First liquid sets the initial color
-        }
-        else
-        {
-            // Blend current color with new color (weighted average)
-            currentLiquidColor = Color.Lerp(currentLiquidColor, newColor, 0.5f);
-        }
+        currentLevel = Mathf.Clamp01(currentLevel + amount);
+        currentColor = Color.Lerp(currentColor, addedColor, 0.5f);
 
-        liquidCount++;
-
-        UpdateLiquidColor();
-    }
-
-    private void UpdateLiquidColor()
-    {
-        Renderer liquidRenderer = liquidInBeaker.GetComponent<Renderer>();
-        if (liquidRenderer != null)
+        if (liquidInBeaker != null)
         {
-            liquidRenderer.material.color = currentLiquidColor;
+            // Scale up Y only
+            float newY = Mathf.Lerp(0.01f, initialScale.y, currentLevel);
+            Vector3 newScale = liquidInBeaker.localScale;
+            newScale.y = newY;
+            liquidInBeaker.localScale = newScale;
+
+            // Position offset (stay seated if pivot is centered)
+            Vector3 newPos = liquidInBeaker.localPosition;
+            newPos.y = initialYPosOffset * (newY / initialScale.y);
+            liquidInBeaker.localPosition = newPos;
+
+            // Update color
+            Renderer r = liquidInBeaker.GetComponent<Renderer>();
+            if (r != null)
+            {
+                r.material.color = currentColor;
+            }
         }
     }
 }

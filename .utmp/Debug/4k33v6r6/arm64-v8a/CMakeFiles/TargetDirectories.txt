@@ -1,5 +1,0 @@
-C:/Users/Angel/uhcs/4321-Coog-Realty-Shift/.utmp/Debug/4k33v6r6/arm64-v8a/CMakeFiles/edit_cache.dir
-C:/Users/Angel/uhcs/4321-Coog-Realty-Shift/.utmp/Debug/4k33v6r6/arm64-v8a/CMakeFiles/rebuild_cache.dir
-C:/Users/Angel/uhcs/4321-Coog-Realty-Shift/.utmp/Debug/4k33v6r6/arm64-v8a/GameActivity/CMakeFiles/game.dir
-C:/Users/Angel/uhcs/4321-Coog-Realty-Shift/.utmp/Debug/4k33v6r6/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
-C:/Users/Angel/uhcs/4321-Coog-Realty-Shift/.utmp/Debug/4k33v6r6/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

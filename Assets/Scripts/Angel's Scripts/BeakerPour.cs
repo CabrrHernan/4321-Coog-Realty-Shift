@@ -1,47 +1,49 @@
 using UnityEngine;
-using System.Collections;
 
 public class BeakerPour : MonoBehaviour
 {
-    public Transform liquid; // Assign the Beaker Liquid (inside the small beaker)
-    public ParticleSystem pourEffect; // Assign a single liquid particle effect prefab
-    public float pourAngleThreshold = 60f; // Angle required to start pouring
-    public Transform mixingBeaker; // Assign the target beaker (if needed for position check)
-    private bool isPouring = false;
-    private Vector3 initialLiquidScale;
-    private Color liquidColor;
+    [Header("Liquid Settings")]
+    public Transform liquid; // Assign the liquid object inside the small beaker
+    public float minPourAngle = 20f;
+    public float maxPourAngle = 80f;
+    public float pourRate = 0.2f;
 
-    private ParticleSystem.MainModule pourMain;
+    [Header("Receiving Beaker")]
+    public ChemicalMixer mixingBeaker; // Drag the large beaker's ChemicalMixer script here
+
+    private float currentFill = 1.0f;
+    private Vector3 initialLiquidScale;
+    private float initialYPosOffset;
+    private Color liquidColor;
+    private bool isPouring = false;
 
     void Start()
     {
         if (liquid != null)
         {
             initialLiquidScale = liquid.localScale;
+            initialYPosOffset = liquid.localPosition.y;
 
-            // Get the color from the beaker's internal liquid material
             Renderer liquidRenderer = liquid.GetComponent<Renderer>();
             if (liquidRenderer != null)
             {
                 liquidColor = liquidRenderer.material.color;
             }
         }
-
-        if (pourEffect != null)
-        {
-            pourMain = pourEffect.main;
-            pourMain.startColor = liquidColor;
-            pourEffect.Stop();
-        }
     }
 
     void Update()
     {
-        if (IsTilted() && IsAboveMixingBeaker() && HasLiquid())
+        if (liquid == null || currentFill <= 0f) return;
+
+        float tiltAngle = Vector3.Angle(transform.up, Vector3.up);
+        float dynamicThreshold = Mathf.Lerp(minPourAngle, maxPourAngle, 1f - currentFill);
+
+        if (tiltAngle > dynamicThreshold)
         {
             if (!isPouring)
             {
-                StartPouring();
+                isPouring = true;
             }
 
             DrainLiquid();
@@ -50,77 +52,40 @@ public class BeakerPour : MonoBehaviour
         {
             if (isPouring)
             {
-                StopPouring();
+                isPouring = false;
             }
         }
     }
 
-    private void StartPouring()
+    void DrainLiquid()
     {
-        isPouring = true;
+        float drainAmount = pourRate * Time.deltaTime;
+        currentFill = Mathf.Max(0f, currentFill - drainAmount);
 
-        if (pourEffect != null)
+        // Scale the liquid height visually
+        float newY = Mathf.Lerp(0.01f, initialLiquidScale.y, currentFill);
+        Vector3 newScale = liquid.localScale;
+        newScale.y = newY;
+        liquid.localScale = newScale;
+
+        Vector3 newPos = liquid.localPosition;
+        newPos.y = initialYPosOffset * (newY / initialLiquidScale.y);
+        liquid.localPosition = newPos;
+
+        // Transfer to mixing beaker
+        if (mixingBeaker != null)
         {
-            // Position the pourEffect at the lowest rim point
-            pourEffect.transform.position = FindLowestRimPoint();
-            pourEffect.Play();
+            mixingBeaker.IncreaseLiquidLevel(drainAmount, liquidColor);
         }
     }
 
-    private void StopPouring()
+    public float GetFillAmount()
     {
-        isPouring = false;
-
-        if (pourEffect != null && pourEffect.isPlaying)
-        {
-            pourEffect.Stop();
-        }
+        return currentFill;
     }
 
-    private void DrainLiquid()
+    public void SetFillAmount(float amount)
     {
-        if (liquid != null && liquid.localScale.y > 0.05f)
-        {
-            // Shrink the visual liquid
-            liquid.localScale -= new Vector3(0, 0.2f * Time.deltaTime, 0);
-        }
-    }
-
-    private bool HasLiquid()
-    {
-        return liquid != null && liquid.localScale.y > 0.05f;
-    }
-
-    private bool IsTilted()
-    {
-        float currentAngle = Vector3.Angle(transform.up, Vector3.up);
-        return currentAngle > pourAngleThreshold;
-    }
-
-    private bool IsAboveMixingBeaker()
-    {
-        if (mixingBeaker == null) return true; // Optional: allow pouring anywhere
-        float heightDiff = transform.position.y - mixingBeaker.position.y;
-        return heightDiff > 0.2f;
-    }
-
-    private Vector3 FindLowestRimPoint()
-    {
-        Vector3 lowestPoint = transform.position;
-        float lowestY = float.MaxValue;
-
-        foreach (Transform child in transform)
-        {
-            if (child.name.ToLower().Contains("rim"))
-            {
-                if (child.position.y < lowestY)
-                {
-                    lowestY = child.position.y;
-                    lowestPoint = child.position;
-                }
-            }
-        }
-
-        return lowestPoint;
+        currentFill = Mathf.Clamp01(amount);
     }
 }
