@@ -5,7 +5,7 @@ public class HotPlateController : MonoBehaviour
 {
     [Header("Temperature Presets")]
     [SerializeField] private float[] temperaturePresets = 
-        { 22f, 50f, 90f, 120f, 160f, 200f, 240f }; // Index 0 = Off, 1-6 = Settings 0-5
+        { 22f, 50f, 85f, 105f, 160f, 192f, 230f }; // Index 0 = Off, 1-6 = Settings 0-5
 
     [Header("References")]
     [SerializeField] private KnobRotation knob;
