@@ -1,73 +1,67 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class DiscMovementVR : MonoBehaviour
+public class DiscMovementVR : UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable
 {
+    [Header("Tower of Hanoi Settings")]
+    [SerializeField] private Transform peg3;            // The goal peg (assign in Inspector)
+    [SerializeField] private int totalDiscs = 3;        // Total number of discs in the puzzle
+
     private Vector3 originalPosition;
+    private Quaternion originalRotation;
     private Transform originalParent;
 
-    [SerializeField] private Transform peg3;            // Assign winning peg
-    [SerializeField] private int totalDiscs = 3;        // Total number of discs
-    [SerializeField] private Transform allDiscsParent;  // Parent holding all discs
+    private float discHeight;
 
-    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
-    private bool isHeld = false;
-
-    private void Awake()
+    protected override void Awake()
     {
-        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        base.Awake();
+        discHeight = GetComponent<Renderer>().bounds.size.y;
     }
 
-    private void OnEnable()
-    {
-        grabInteractable.selectEntered.AddListener(OnGrab);
-        grabInteractable.selectExited.AddListener(OnRelease);
-    }
-
-    private void OnDisable()
-    {
-        grabInteractable.selectEntered.RemoveListener(OnGrab);
-        grabInteractable.selectExited.RemoveListener(OnRelease);
-    }
-
-    private void OnGrab(SelectEnterEventArgs args)
+    protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
         if (!IsTopDisc())
         {
-            Debug.Log("Can't grab this disc. It's not the topmost on its peg.");
-            grabInteractable.interactionManager.CancelInteractableSelection(grabInteractable as UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable);
+            Debug.Log("❌ Cannot grab: Not the top disc.");
+            interactionManager.CancelInteractableSelection(this as UnityEngine.XR.Interaction.Toolkit.Interactables.IXRSelectInteractable);
             return;
         }
 
         originalPosition = transform.position;
+        originalRotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
         originalParent = transform.parent;
-        isHeld = true;
+
+        base.OnSelectEntered(args);
     }
 
-    private void OnRelease(SelectExitEventArgs args)
+    protected override void OnSelectExited(SelectExitEventArgs args)
     {
-        isHeld = false;
+        base.OnSelectExited(args);
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 0.5f);
-        foreach (Collider col in colliders)
+        Transform nearestPeg = FindNearestPeg();
+
+        if (nearestPeg != null && IsValidMove(nearestPeg))
         {
-            if (col.CompareTag("Peg"))
-            {
-                Transform peg = col.transform;
-                if (IsValidMove(peg))
-                {
-                    transform.SetParent(peg);
-                    transform.SetAsLastSibling();
-                    transform.position = GetNewPosition(peg);
-                    CheckWinCondition();
-                    return;
-                }
-            }
+            // Snap to peg
+            transform.SetParent(nearestPeg);
+            transform.SetAsLastSibling();
+            transform.position = GetNewPosition(nearestPeg);
+            transform.rotation = originalRotation;
+            CheckWinCondition();
         }
+        else
+        {
+            // Invalid drop → reset
+            transform.position = originalPosition;
+            transform.rotation = originalRotation;
+            transform.SetParent(originalParent);
+        }
+    }
 
-        // Invalid move: reset
-        transform.position = originalPosition;
-        transform.SetParent(originalParent);
+    public override bool IsSelectableBy(UnityEngine.XR.Interaction.Toolkit.Interactors.IXRSelectInteractor interactor)
+    {
+        return IsTopDisc() && base.IsSelectableBy(interactor);
     }
 
     private bool IsTopDisc()
@@ -93,7 +87,6 @@ public class DiscMovementVR : MonoBehaviour
         Transform topDisc = GetTopDisc(peg);
         if (topDisc != null && transform.localScale.x >= topDisc.localScale.x)
         {
-            Debug.Log("Invalid move: can't place larger disc on smaller one.");
             return false;
         }
 
@@ -113,11 +106,22 @@ public class DiscMovementVR : MonoBehaviour
 
     private Vector3 GetNewPosition(Transform peg)
     {
-        float discHeight = GetComponent<Renderer>().bounds.size.y;
         float baseY = peg.GetComponent<Collider>().bounds.min.y;
-
         float newY = baseY + (peg.childCount - 1) * discHeight + (discHeight / 2f);
         return new Vector3(peg.position.x, newY, peg.position.z);
+    }
+
+    private Transform FindNearestPeg()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.6f); // Radius for peg detection
+        foreach (Collider col in hitColliders)
+        {
+            if (col.CompareTag("Peg"))
+            {
+                return col.transform;
+            }
+        }
+        return null;
     }
 
     private void CheckWinCondition()
@@ -125,7 +129,11 @@ public class DiscMovementVR : MonoBehaviour
         if (peg3.childCount == totalDiscs)
         {
             Debug.Log("🎉 You Win!");
-            // Trigger win UI if applicable
+            MouseInputUI ui = GameObject.FindObjectOfType<MouseInputUI>();
+            if (ui != null)
+            {
+                ui.ShowWinMessage();
+            }
         }
     }
 }
