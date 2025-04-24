@@ -4,6 +4,7 @@ using UnityEngine;
 public class Task : ScriptableObject
 {
     public string taskName;
+    [TextArea(5, 15)]
     public string description;
     public bool isCompleted;
 

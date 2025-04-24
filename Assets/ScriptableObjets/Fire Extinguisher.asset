@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: Fire Extinguisher
   m_EditorClassIdentifier: 
   taskName: Fire Extinguisher
-  description: "In very rare situations fires can break lose in the lab knowing how
-    to operate a fire extinguisher can save your job and more importantly your life 
-    Remember the PASS method if you are in a this situation  P \u2013 Pull the pin
-    This unlocks the handle and allows you to discharge the extinguisher.  A \u2013
-    Aim low Point the nozzle or hose at the base of the fire, not the flames.  S
-    \u2013 Squeeze the handle This releases the extinguishing agent.  S \u2013 Sweep
-    side to side Move the nozzle in a sweeping motion at the base of the fire until
-    it goes out.   Once the fire is put out put down the fire extinguisher  Report
-    the indecent  Once you do all of this you can check this task as complete  "
+  description: "<b>Task:</b> Fire Safety and Extinguisher Use\r\n\r\nAlthough rare,
+    fires can occur in the lab. Knowing how to operate a fire extinguisher can save
+    your job\u2014and more importantly, your life.\r\n\r\n<b>Remember the PASS method:</b> 
+    \r\n\u2022 <b>P \u2013 Pull the pin</b>  \r\n   This unlocks the handle and allows
+    you to discharge the extinguisher.  \r\n\r\n\u2022 <b>A \u2013 Aim low</b>  \r\n  
+    Point the nozzle or hose at the base of the fire, not the flames.  \r\n\r\n\u2022
+    <b>S \u2013 Squeeze the handle</b>  \r\n   This releases the extinguishing agent. 
+    \r\n\r\n\u2022 <b>S \u2013 Sweep side to side</b>  \r\n   Move the nozzle in
+    a sweeping motion at the base of the fire until it goes out.\r\n\r\n<b>After
+    extinguishing the fire:</b>  \r\n\u2022 Place the fire extinguisher down  \r\n\u2022
+    Report the incident to the appropriate authority  \r\n\r\n<b>Completion:</b> 
+    \r\nOnce all steps are complete, you can mark this task as done.\r"
   isCompleted: 0
