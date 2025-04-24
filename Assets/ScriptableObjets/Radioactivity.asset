@@ -13,14 +13,5 @@ MonoBehaviour:
   m_Name: Radioactivity
   m_EditorClassIdentifier: 
   taskName: RadioActivity Lab
-  description: "<b>Task:</b> Radiation Detection\r\n\r\nWhen radioactive materials
-    are present, a Geiger counter provides real-time detection and measurement of
-    ionizing radiation, which is usually invisible and undetectable. By using the
-    Geiger counter, you can monitor exposure and ensure it stays within safety limits.\r\n\r\n<b>Steps:</b> 
-    \r\n\u2022 Provided are three rocks, each with varying levels of radiation  \r\n\u2022
-    Using the wand, hover it over each rock  \r\n\u2022 The tablet will update in
-    3-second intervals, showing the radiation level  \r\n\u2022 Determine which rock
-    has:  \r\n  - The <i>lowest</i> radiation  \r\n  - The <i>medium</i> radiation 
-    \r\n  - The <i>highest</i> radiation  \r\n\r\n<b>Completion:</b>  \r\nOnce all
-    rocks are correctly identified, you can mark this task as complete.\r\n"
+  description: 
   isCompleted: 0

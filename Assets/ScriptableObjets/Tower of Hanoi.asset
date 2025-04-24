@@ -13,18 +13,5 @@ MonoBehaviour:
   m_Name: Tower of Hanoi
   m_EditorClassIdentifier: 
   taskName: 'Tower of Hanoi Pre Demo '
-  description: "<b>Task:</b> Tower of Hanoi (VR Headset Check)\r\n\r\nThis task is
-    used to ensure your Meta Quest headset is functioning properly.\r\n\r\nMove all
-    the discs from the starting tower to the tower on the end.  \r\n<b>Rules:</b> 
-    \r\n\u2022 You may <i>not</i> stack a larger disc on top of a smaller disc  \r\n\u2022
-    You may only move the <i>topmost</i> disc from any tower\r\n\r\n<b>Solution:</b> 
-    \r\n1. Move the <color=blue>blue</color> disc from the 1st tower to the 3rd tower 
-    \r\n2. Move the <color=green>green</color> disc from the 1st tower to the 2nd
-    tower  \r\n3. Move the <color=blue>blue</color> disc from the 3rd tower to the
-    2nd tower  \r\n4. Move the <color=red>red</color> disc from the 1st tower to
-    the 3rd tower  \r\n5. Move the <color=blue>blue</color> disc from the 2nd tower
-    to the 1st tower  \r\n6. Move the <color=green>green</color> disc from the 2nd
-    tower to the 3rd tower  \r\n7. Move the <color=blue>blue</color> disc from the
-    1st tower to the 3rd tower\r\n\r\n<b>Completion:</b>  \r\nOnce all discs are
-    stacked on the third tower in the correct order, you can mark this task as complete.\r\n"
+  description: 
   isCompleted: 0
