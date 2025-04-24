@@ -58,8 +58,7 @@ QualitySettings:
     terrainBillboardStart: 50
     terrainFadeLength: 5
     terrainMaxTrees: 50
-    excludedTargetPlatforms:
-    - Standalone
+    excludedTargetPlatforms: []
   - serializedVersion: 4
     name: Balanced
     pixelLightCount: 1
@@ -79,7 +78,7 @@ QualitySettings:
     antiAliasing: 4
     softParticles: 0
     softVegetation: 0
-    realtimeReflectionProbes: 0
+    realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 0
     useLegacyDetailDistribution: 1
     adaptiveVsync: 0
