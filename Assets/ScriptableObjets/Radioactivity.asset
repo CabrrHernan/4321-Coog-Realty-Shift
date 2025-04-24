@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da54d02ae57913f47a0eda164cd517f5, type: 3}
   m_Name: Radioactivity
   m_EditorClassIdentifier: 
-  taskName: Radioactivity Lab
+  taskName: RadioActivity Lab
   description: 
   isCompleted: 0
