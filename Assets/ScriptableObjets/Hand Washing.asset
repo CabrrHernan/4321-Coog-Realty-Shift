@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Hand Washing
   m_EditorClassIdentifier: 
   taskName: 'Hand Washing '
-  description: 'Washing your hands is critical before performing any experiment.
-    Hands are always dirty and depending on the experiment can play a role in miscalculations.  
-    Turn on the tap and adjust to a comfortable temperature.  Wet your hands thoroughly. 
-    Apply soap and lather for at least 20 seconds (sing the ABCs!).  Scrub palms,
-    back of hands, between fingers, under nails, and wrists.  Rinse off all soap
-    with clean water.  Dry hands using a clean towel or air dryer.  Turn off tap
-    Once you do all of this you can check this task as complete  '
+  description: "<b>Task:</b> Proper Handwashing\r\n\r\nWashing your hands is critical
+    before performing any experiment. Dirty hands can lead to contamination and miscalculations.\r\n\r\n<b>Steps:</b> 
+    \r\n\u2022 Turn on the tap and adjust to a comfortable temperature  \r\n\u2022
+    Wet your hands thoroughly  \r\n\u2022 Apply soap and lather for at least 20 seconds
+    (sing the ABCs!)  \r\n\u2022 Scrub your palms, the back of your hands, between
+    your fingers, under your nails, and your wrists  \r\n\u2022 Rinse off all soap
+    with clean water  \r\n\u2022 Dry your hands with a clean towel or use an air
+    dryer  \r\n\u2022 Turn off the tap\r\n\r\n<b>Completion:</b>  \r\nOnce all steps
+    are complete, you can mark this task as done.\r"
   isCompleted: 0
