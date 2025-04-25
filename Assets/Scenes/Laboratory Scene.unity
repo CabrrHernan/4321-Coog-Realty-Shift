@@ -1856,6 +1856,9 @@ Transform:
   - {fileID: 291606005}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -28868,6 +28871,7 @@ Transform:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -5.609, y: 1.259, z: 2.322}
   m_LocalScale: {x: 200, y: 200, z: 200}
@@ -28881,6 +28885,13 @@ Transform:
   m_LocalScale: {x: 100, y: 99.999985, z: 100.000015}
   m_ConstrainProportionsScale: 0
   m_Children: []
+=======
+  m_LocalRotation: {x: -0.47673967, y: 0.5222254, z: 0.52222544, w: 0.47673956}
+  m_LocalPosition: {x: 0.014891624, y: 0.0012475252, z: -0.016578436}
+  m_LocalScale: {x: 100, y: 99.999985, z: 100.000015}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+>>>>>>> Stashed changes
 =======
   m_LocalRotation: {x: -0.47673967, y: 0.5222254, z: 0.52222544, w: 0.47673956}
   m_LocalPosition: {x: 0.014891624, y: 0.0012475252, z: -0.016578436}
